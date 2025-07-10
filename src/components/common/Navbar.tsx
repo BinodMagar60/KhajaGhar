@@ -4,9 +4,15 @@ import { Headset, HomeIcon, Menu, ShoppingBag, User2, UserCheck2, UserPlus2, Ute
 import { Button } from "../ui/button"
 import { useState } from "react"
 
+interface IButtonLists {
+    name: string,
+    link: string,
+    icon: React.ReactNode
+}
+
 const Navbar = () => {
-    const [hamburger, sethamburger] = useState(false)
-    const iconsize = 24
+    const [hamburger, sethamburger] = useState<boolean>(false)
+    const iconsize:number = 24
     const buttonLists = [
         {
             name: "Home",
