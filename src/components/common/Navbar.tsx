@@ -1,26 +1,32 @@
 'use client'
 
-import { Menu } from "lucide-react"
+import { Headset, HomeIcon, Menu, ShoppingBag, User2, UserCheck2, UserPlus2, UtensilsCrossed, X } from "lucide-react"
 import { Button } from "../ui/button"
+import { useState } from "react"
 
 const Navbar = () => {
-
+    const [hamburger, sethamburger] = useState(false)
+    const iconsize = 24
     const buttonLists = [
         {
             name: "Home",
-            link: ""
+            link: "",
+            icon: <HomeIcon size={iconsize} />
         },
         {
             name: "Restaurants",
-            link: ""
+            link: "",
+            icon: <UtensilsCrossed size={iconsize} />
         },
         {
             name: "Orders",
-            link: ""
+            link: "",
+            icon: <ShoppingBag size={iconsize} />
         },
         {
             name: "Support",
-            link: ""
+            link: "",
+            icon: <Headset size={iconsize} />
         },
     ]
 
@@ -34,7 +40,7 @@ const Navbar = () => {
                 <div className="hidden md:block">
                     {
                         buttonLists.map((item, index) => (
-                            <Button key={index} variant={'nooutline'} className="hover:text-[#FA8B3E] text-md">{item.name}</Button>
+                            <Button key={index} variant={'nooutline'} className="hover:text-[#FA8B3E] text-md cursor-pointer">{item.name}</Button>
                         ))
                     }
                 </div>
@@ -47,17 +53,39 @@ const Navbar = () => {
                         <Button variant={'darkbutton'} >Sign Up</Button>
                     </div>
                     <div>
-                        <Button variant={'outline'} className="border-0 shadow-none cursor-pointer"><Menu /></Button>
+                        <Button variant={'outline'} className="border-0 shadow-none cursor-pointer md:hidden" onClick={()=>sethamburger(true)}><Menu /></Button>
                     </div>
-                    <div className="w-full min-h-screen absolute bg-red-100 top-0 left-0">
-                        <div className="h-screen">
-                            {
-                                buttonLists.map((item, index) => (
-                                    <Button key={index} variant={'nooutline'} className="hover:text-[#FA8B3E] text-md">{item.name}</Button>
-                                ))
-                            }
+                    {
+                        hamburger && <div className={`fixed top-0 w-full min-h-screen bg-red-50 left-0 z-10`}>
+                        <div className="container h-screen">
+                            <div className="w-full flex justify-end">
+                                <button className=" py-4 text-gray-500 active:text-black hover:text-[#FA8B3E] cursor-pointer" onClick={()=>sethamburger(false)}><X size={24}/></button>
+                            </div>
+                            <div className="flex flex-col items-center gap-5">
+                                <button className="p-0 text-gray-500 active:text-black hover:text-[#FA8B3E] text-2xl flex gap-3 items-center">
+                                    <span><User2 size={iconsize}/></span>
+                                    <span>Profile</span>
+                                </button>
+                                {
+                                    buttonLists.map((item, index) => (
+                                        <button key={index} className="p-0 text-gray-500 active:text-black hover:text-[#FA8B3E] text-2xl flex gap-3 items-center">
+                                            <span>{item.icon}</span>
+                                            <span>{item.name}</span>
+                                        </button>
+                                    ))
+                                }
+                                <button className="p-0 text-gray-500 active:text-black hover:text-[#FA8B3E] text-2xl flex gap-3 items-center">
+                                    <span><UserCheck2 size={iconsize}/></span>
+                                    <span>Login</span>
+                                </button>
+                                <button className="p-0 text-gray-500 active:text-black hover:text-[#FA8B3E] text-2xl flex gap-3 items-center">
+                                    <span><UserPlus2 size={iconsize}/></span>
+                                    <span>Sign Up</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    }
                 </div>
             </div>
         </div>
