@@ -13,7 +13,7 @@ interface IButtonLists {
 const Navbar = () => {
     const [hamburger, sethamburger] = useState<boolean>(false)
     const iconsize:number = 24
-    const buttonLists = [
+    const buttonLists: IButtonLists[] = [
         {
             name: "Home",
             link: "",
