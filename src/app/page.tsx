@@ -1,4 +1,5 @@
 'use client'
+import FoodCard from "@/components/common/FoodCard";
 import RestaurantCard from "@/components/common/RestaurantCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,10 +37,70 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {
-          Array.from({ length: 8 }).map((_, i) => (
-            <RestaurantCard key={i} />
-          ))
-        }
+            Array.from({ length: 8 }).map((_, i) => (
+              <RestaurantCard key={i} />
+            ))
+          }
+        </div>
+      </div>
+      <div className="container mx-auto px-4 py-10">
+        <div>
+          <div className="text-2xl font-bold mb-8">Popular Restaurants</div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {
+            Array.from({ length: 4 }).map((_, i) => (
+              <FoodCard key={i} />
+            ))
+          }
+        </div>
+      </div>
+
+      <div className="w-full bg-[#111827]">
+        <div className="container mx-auto pt-18">
+          <div className="w-full px-4 text-gray-500 font-semibold grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-4">
+          <div>
+            <div>
+              <div className="font-bold flex gap-1 items-center mb-3">
+                <img src="/logo.png" alt="Logo" className="w-10 h-10" />
+                <span className="font-bold text-2xl lg:text-3xl text-white">KhajaGhar</span>
+              </div>
+              <div>
+                Fast, reliable food delivery service
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="text-xl text-white mb-3">
+              For Customers
+            </div>
+            <div className="space-y-2">
+              <div>Browse Restaurants</div>
+              <div>Customer Support</div>
+            </div>
+          </div>
+          <div>
+            <div className="text-xl text-white mb-3">
+              For Restaurants
+            </div>
+            <div className="space-y-2">
+              <div>Partner with Us</div>
+              <div>Restaurant Login</div>
+            </div>
+          </div>
+          <div>
+            <div className="text-xl text-white mb-3">
+              Company
+            </div>
+            <div className="space-y-2">
+              <div>About Us</div>
+              <div>Careers</div>
+            </div>
+          </div>
+        </div>
+        <div className="border border-[#111827] border-t-[#a8a8a849] text-gray-500 text-center py-8">
+            &#169; {new Date().getFullYear()} KhajaGhar. All rights reserved.
+        </div>
         </div>
       </div>
 

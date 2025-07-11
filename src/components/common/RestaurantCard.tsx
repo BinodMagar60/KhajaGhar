@@ -1,16 +1,18 @@
 'use client'
 
-import { Clock, Send, Star } from "lucide-react"
+import { Clock, Heart, Send, Star } from "lucide-react"
 import { Button } from "../ui/button"
 
 const RestaurantCard = () => {
     return (
-        <div className="border border-gray-300 rounded-md bg-white transition-scale ease-in-out duration-100 hover:scale-102 hover:shadow ">
-            <div>
-                <img src="https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg" alt="image photo" className="w-full h-44 rounded-t-md" />
-
+        <div className="rounded-md  bg-white transition-scale ease-in-out duration-200 hover:scale-102 hover:shadow ">
+            <div className="relative">
+                <img src="https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg" alt="image photo" className="w-full h-58 rounded-t-md object-cover" />
+                <div className="absolute top-2 right-2">
+                    <button className="p-1.5 bg-white rounded-full hover:text-[#F76A27]"><Heart size={18}/></button>
+                </div>
             </div>
-            <div className="p-4 space-y-2">
+            <div className="p-4 space-y-2 border border-gray-300 rounded-b-md">
                 <div>
                     <div className="text-xl font-semibold flex justify-between">
                         <div>Pizza Palace</div>
