@@ -37,7 +37,7 @@ const Navbar = () => {
     ]
 
     return (
-        <div className="w-full bg-white relative">
+        <div className="w-full bg-white sticky top-0 left-0 z-20 border border-t-0 border-r-0 border-l-0 border-b-gray-300">
             <div className="container mx-auto px-4 py-2 flex justify-between items-center">
                 <div className="font-bold flex gap-1 items-center">
                     <img src="/logo.png" alt="Logo" className="w-10 h-10" />
