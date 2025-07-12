@@ -39,7 +39,7 @@ const Navbar = () => {
 
     return (
         <div className="w-full bg-white sticky top-0 left-0 z-50 border border-t-0 border-r-0 border-l-0 border-b-gray-300">
-            <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+            <div className="container mx-auto px-4 py-2 flex justify-between items-center ">
                 <div className="font-bold flex gap-1 items-center">
                     <img src="/logo.png" alt="Logo" className="w-10 h-10" />
                     <span className=" text-xl lg:text-3xl ">KhajaGhar</span>
@@ -61,8 +61,8 @@ const Navbar = () => {
                         <Button variant={'outline'}>Login</Button>
                         <Button variant={'darkbutton'} >Sign Up</Button>
                     </div>
-                    <div>
-                        <Button variant={'outline'} className="border-0 shadow-none cursor-pointer md:hidden" onClick={() => sethamburger(prev => !prev)}>
+                    <div className="w-13 flex justify-center items-center">
+                        <Button variant={'outline'} className="border-0 w-full shadow-none cursor-pointer md:hidden" onClick={() => sethamburger(prev => !prev)}>
                             <div className={`transition-all duration-200 ease-in-out ${hamburger? "relative":"flex flex-col gap-1"}`}>
                                 <div className={`w-4 border transition-all duration-500 ease-in-out ${hamburger? "absolute top-1/2 left-1/2 -translate-1/2 rotate-45 ":""}`}></div>
                                 <div className={`w-4 border transition-all duration-500 ease-in-out ${hamburger? "absolute top-1/2 left-1/2 -translate-1/2 -rotate-45 ":""}`}></div>
