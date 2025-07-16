@@ -32,7 +32,7 @@ const Navbar = () => {
         },
         {
             name: "Support",
-            link: "/",
+            link: "/support",
             icon: <Headset size={iconsize} />
         },
     ]
@@ -57,12 +57,12 @@ const Navbar = () => {
                     <div className="hidden">
                         Profile
                     </div>
-                    <div className="hidden md:flex gap-2">
+                    <div className="hidden lg:flex gap-2">
                         <Button variant={'outline'}>Login</Button>
                         <Button variant={'darkbutton'} >Sign Up</Button>
                     </div>
                     <div className="w-13 flex justify-center items-center">
-                        <Button variant={'outline'} className="border-0 w-full shadow-none cursor-pointer md:hidden" onClick={() => sethamburger(prev => !prev)}>
+                        <Button variant={'outline'} className="border-0 w-full shadow-none cursor-pointer lg:hidden" onClick={() => sethamburger(prev => !prev)}>
                             <div className={`transition-all duration-200 ease-in-out ${hamburger? "relative":"flex flex-col gap-1"}`}>
                                 <div className={`w-4 border transition-all duration-500 ease-in-out ${hamburger? "absolute top-1/2 left-1/2 -translate-1/2 rotate-45 ":""}`}></div>
                                 <div className={`w-4 border transition-all duration-500 ease-in-out ${hamburger? "absolute top-1/2 left-1/2 -translate-1/2 -rotate-45 ":""}`}></div>
