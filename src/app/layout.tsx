@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {  Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin"]
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased bg-[#F6F7F8] min-h-screen w-full`}
       >
+        <Toaster position="bottom-right" />
         <Navbar/>
         {children}
       </body>
