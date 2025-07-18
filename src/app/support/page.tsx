@@ -1,5 +1,7 @@
 'use client'
 
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Phone, Mail } from "lucide-react"
 import { toast } from "sonner"
 const icons = {
@@ -14,8 +16,8 @@ const page = () => {
                 <div className="text-2xl sm:text-3xl font-bold">Customer Support</div>
                 <div className="text-sm sm:text-base text-gray-600">We're here to help! Get in touch with us.</div>
             </div>
-            <div className="w-full grid grid-cols-1 lg:grid-cols-3">
-                <div className="w-full lg:col-span-1">
+            <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
+                <div className="w-full lg:col-span-1 flex gap-6 flex-col">
                     {
                         [
                             {
@@ -52,7 +54,7 @@ const page = () => {
                     }
                 </div>
                 <div className="lg:col-span-2">
-
+                    <ContactFrom/>
                 </div>
             </div>
         </div>
@@ -63,26 +65,33 @@ const page = () => {
 function ContactFrom() {
 
     return (
-        <form>
+        <form className="w-full border border-gray-300 bg-white p-6 rounded-md">
             <div>
                 Send us a Message
             </div>
             <div>
                 <div>
                     <div>Name*</div>
+                    <div><Input placeholder="Your full name"/></div>
                 </div>
                 <div>
                     <div>Emai*</div>
+                    <div><Input placeholder="your.email@example.com"/></div>
                 </div>
             </div>
             <div>
                 <div>Category*</div>
+                <div><Input placeholder=""/></div>
             </div>
             <div>
                 <div>Subject*</div>
+                <div><Input placeholder="Brief description of your issue"/></div>
             </div>
             <div>
                 <div>Message*</div>
+                <div><Textarea id="message" placeholder="Please describe your issue in detail..." className="w-full resize-none h-32 overflow-y-auto" style={{
+                    scrollbarWidth: "none"
+                }}/></div>
             </div>
             <div></div>
         </form>
