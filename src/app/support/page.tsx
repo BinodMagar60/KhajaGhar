@@ -1,7 +1,9 @@
 'use client'
 
 import { Input } from "@/components/ui/input"
+import { Select } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
+import { SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@radix-ui/react-select"
 import { Phone, Mail } from "lucide-react"
 import { toast } from "sonner"
 const icons = {
@@ -54,7 +56,7 @@ const page = () => {
                     }
                 </div>
                 <div className="lg:col-span-2">
-                    <ContactFrom/>
+                    <ContactFrom />
                 </div>
             </div>
         </div>
@@ -72,26 +74,42 @@ function ContactFrom() {
             <div>
                 <div>
                     <div>Name*</div>
-                    <div><Input placeholder="Your full name"/></div>
+                    <div><Input className="border-gray-300" placeholder="Your full name" /></div>
                 </div>
                 <div>
                     <div>Emai*</div>
-                    <div><Input placeholder="your.email@example.com"/></div>
+                    <div><Input className="border-gray-300" placeholder="your.email@example.com" /></div>
                 </div>
             </div>
             <div>
                 <div>Category*</div>
-                <div><Input placeholder=""/></div>
+                <div>
+                    <Select>
+                        <SelectTrigger className="">
+                            <SelectValue placeholder='Select a category'/>
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                <SelectItem value="Order Issues">Order Issues</SelectItem>
+                                <SelectItem value="Payment Problem">Payment Problem</SelectItem>
+                                <SelectItem value="Delivery Issues">Delivery Issues</SelectItem>
+                                <SelectItem value="Account Help">Account Help</SelectItem>
+                                <SelectItem value="Restaurant Issues">Restaurant Issues</SelectItem>
+                                <SelectItem value="Other">Other</SelectItem>
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
+                </div>
             </div>
             <div>
                 <div>Subject*</div>
-                <div><Input placeholder="Brief description of your issue"/></div>
+                <div><Input className="border-gray-300" placeholder="Brief description of your issue" /></div>
             </div>
             <div>
                 <div>Message*</div>
-                <div><Textarea id="message" placeholder="Please describe your issue in detail..." className="w-full resize-none h-32 overflow-y-auto" style={{
+                <div><Textarea id="message" placeholder="Please describe your issue in detail..." className="w-full resize-none h-32 overflow-y-auto border-gray-300 shadow-none" style={{
                     scrollbarWidth: "none"
-                }}/></div>
+                }} /></div>
             </div>
             <div></div>
         </form>
