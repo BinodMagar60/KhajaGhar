@@ -1,9 +1,8 @@
 'use client'
 
 import { Input } from "@/components/ui/input"
-import { Select } from "@/components/ui/select"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue  } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@radix-ui/react-select"
 import { Phone, Mail } from "lucide-react"
 import { toast } from "sonner"
 const icons = {
@@ -67,17 +66,17 @@ const page = () => {
 function ContactFrom() {
 
     return (
-        <form className="w-full border border-gray-300 bg-white p-6 rounded-md">
+        <form className="w-full border border-gray-300 bg-white p-6 rounded-md space-y-4">
             <div>
                 Send us a Message
             </div>
-            <div>
+            <div className="space-y-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
                 <div>
                     <div>Name*</div>
                     <div><Input className="border-gray-300" placeholder="Your full name" /></div>
                 </div>
                 <div>
-                    <div>Emai*</div>
+                    <div>Email*</div>
                     <div><Input className="border-gray-300" placeholder="your.email@example.com" /></div>
                 </div>
             </div>
@@ -85,10 +84,10 @@ function ContactFrom() {
                 <div>Category*</div>
                 <div>
                     <Select>
-                        <SelectTrigger className="">
+                        <SelectTrigger className="w-full border-gray-300 ring-0 focus:ring-0">
                             <SelectValue placeholder='Select a category'/>
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-white border-gray-300">
                             <SelectGroup>
                                 <SelectItem value="Order Issues">Order Issues</SelectItem>
                                 <SelectItem value="Payment Problem">Payment Problem</SelectItem>
