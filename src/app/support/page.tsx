@@ -1,10 +1,19 @@
 'use client'
 
 import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue  } from "@/components/ui/select"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, Mail } from "lucide-react"
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
+
+import { Phone, Mail, CircleQuestionMark } from "lucide-react"
 import { toast } from "sonner"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 const icons = {
     Phone: Phone,
     Mail: Mail,
@@ -55,7 +64,12 @@ const page = () => {
                     }
                 </div>
                 <div className="lg:col-span-2">
-                    <ContactFrom />
+                    <div>
+                        <ContactFrom />
+                    </div>
+                    <div>
+                        <FAQ />
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,7 +81,7 @@ function ContactFrom() {
 
     return (
         <form className="w-full border border-gray-300 bg-white p-6 rounded-md space-y-4">
-            <div>
+            <div className="text-xl font-semibold">
                 Send us a Message
             </div>
             <div className="space-y-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
@@ -85,7 +99,7 @@ function ContactFrom() {
                 <div>
                     <Select>
                         <SelectTrigger className="w-full border-gray-300 ring-0 focus:ring-0">
-                            <SelectValue placeholder='Select a category'/>
+                            <SelectValue placeholder='Select a category' />
                         </SelectTrigger>
                         <SelectContent className="bg-white border-gray-300">
                             <SelectGroup>
@@ -110,8 +124,95 @@ function ContactFrom() {
                     scrollbarWidth: "none"
                 }} /></div>
             </div>
-            <div></div>
+            <div>
+                <Button className="w-full bg-black text-white hover:bg-gray-900">Send Message</Button>
+            </div>
         </form>
+    )
+}
+
+
+const FAQ = () => {
+    const [searched, setSearched] = useState("")
+    const Data = [
+        {
+            id: 1,
+            title: "How do I track my order",
+            description: "You can track your order by visiting the 'Orders' page in your account or clicking the tracking link in your confirmation email. You'll see real-time updates on your order status.",
+            value: "item-1"
+        },
+        {
+            id: 2,
+            title: "What if my order is late",
+            description: "If your order is significantly delayed, please contact us immediately. We'll investigate with the restaurant and provide updates. You may be eligible for a refund or credit.",
+            value: "item-2"
+        },
+        {
+            id: 3,
+            title: "How do I cancel an order",
+            description: "Orders can only be cancelled within the first 5 minutes after placing. Go to your order details and click 'Cancel Order'. After this time, contact the restaurant directly.",
+            value: "item-3"
+        },
+        {
+            id: 4,
+            title: "What payment methods you accept",
+            description: "We accept all major credit cards, debit cards, and other e-wallets present in Nepal. Cash on delivery is available in select areas.",
+            value: "item-4"
+        },
+        {
+            id: 5,
+            title: "How are delivery fees calculated",
+            description: "Delivery fees vary by restaurant and distance. The fee is clearly shown before you place your order. Some restaurants offer free delivery on orders above a certain amount.",
+            value: "item-5"
+        },
+        {
+            id: 6,
+            title: "What if my order is wrong or missing items?",
+            description: "If there's an issue with your order, contact us immediately through the app or website. We'll work with the restaurant to resolve the issue and may offer a refund or replacement.",
+            value: "item-6"
+        },
+        {
+            id: 7,
+            title: "How do I become a restaurant partner?",
+            description: "Visit our restaurant registration page and fill out the application. Our team will review your application within 24-48 hours and contact you with next steps.",
+            value: "item-7"
+        },
+    ]
+
+
+    const searchedQuery = searched.trim() === ""
+        ? Data
+        : Data.filter(item => item.title.toLowerCase().includes(searched.toLowerCase().trim()));
+
+
+    return (
+        <div className="mt-6 mb-8 w-full border border-gray-300 bg-white p-6 rounded-md space-y-4">
+            <div className="flex items-center text-xl font-semibold gap-2">
+                <CircleQuestionMark size={20} /> Frequently Asked Questions
+            </div>
+            <div>
+                <Input placeholder="Search FAQs..." className="w-full border-gray-300" onChange={(e) => setSearched(e.target.value)} />
+            </div>
+            <Accordion
+                type="single"
+                collapsible
+                className="w-full"
+                defaultValue="item-1"
+            >
+                {
+                    searchedQuery.map(item => (
+                        <AccordionItem value={item.value} key={item.id}>
+                            <AccordionTrigger className="font-semibold text-base">{item.title}</AccordionTrigger>
+                            <AccordionContent className="flex flex-col gap-4 text-balance text-gray-600">
+                                <p>
+                                    {item.description}
+                                </p>
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))
+                }
+            </Accordion>
+        </div>
     )
 }
 
