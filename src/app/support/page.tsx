@@ -84,7 +84,7 @@ function ContactFrom() {
             <div className="text-xl font-semibold">
                 Send us a Message
             </div>
-            <div className="space-y-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
                     <div>Name*</div>
                     <div><Input className="border-gray-300" placeholder="Your full name" /></div>

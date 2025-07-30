@@ -27,7 +27,7 @@ const Navbar = () => {
         },
         {
             name: "Orders",
-            link: "/",
+            link: "/orders",
             icon: <ShoppingBag size={iconsize} />
         },
         {
