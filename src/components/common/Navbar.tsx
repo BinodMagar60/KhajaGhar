@@ -54,7 +54,7 @@ const Navbar = () => {
                     }
                 </div>
                 <div className="flex items-center">
-                    <div className="">
+                    <div className=" hidden lg:block">
                         <Link href='/profile'>
                             <Button variant={'outline'} ><User /> Profile</Button>
                         </Link>
