@@ -2,11 +2,20 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
-import { Bell, Edit, Mail, MapPin, Phone, StoreIcon, User } from "lucide-react"
+import { Bell, Edit, Eye, EyeOff, LogOut, Mail, MapPin, Phone, Star, StoreIcon, User } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+
+
+interface IRestuarant {
+    id: number;
+    name: string;
+    rating: number;
+    image: string
+}
+
+
 
 const page = () => {
 
@@ -81,7 +90,7 @@ const page = () => {
                     </div>
 
                 </div>
-                <div className="col-span-2">
+                <div className="col-span-2 mb-8">
                     <PersonalInforamtion />
                 </div>
             </div>
@@ -93,6 +102,7 @@ const page = () => {
 
 const PersonalInforamtion = () => {
     const [isEdit, setEdit] = useState(false)
+    const [isPassword, setPassword] = useState(true)
     const [profile, setProfile] = useState({
         fullName: "Binod Kaucha Magar",
         email: "kauchabinod88@gmail.com",
@@ -102,8 +112,12 @@ const PersonalInforamtion = () => {
         getEmailNotification: false,
         getSmsNotification: false,
     })
-
-    const [favouriteRestaurants, setFavouriteRestaurants] = useState([
+    const [toggle, setToggle] = useState({
+        currentPassword: true,
+        newPassword: false,
+        confirmPassword: false,
+    })
+    const [favouriteRestaurants, setFavouriteRestaurants] = useState<IRestuarant[]>([
         {
             id: 1,
             name: "Pizza Place",
@@ -122,7 +136,53 @@ const PersonalInforamtion = () => {
             rating: 4.5,
             image: "https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg",
         },
+        {
+            id: 4,
+            name: "Pizza Place",
+            rating: 4.5,
+            image: "https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg",
+        },
+        {
+            id: 5,
+            name: "Pizza Place",
+            rating: 4.5,
+            image: "https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg",
+        },
+        {
+            id: 6,
+            name: "Pizza Place",
+            rating: 4.5,
+            image: "https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg",
+        },
+        {
+            id: 7,
+            name: "Pizza Place",
+            rating: 4.5,
+            image: "https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg",
+        },
+        {
+            id: 8,
+            name: "Pizza Place",
+            rating: 4.5,
+            image: "https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg",
+        },
+        {
+            id: 9,
+            name: "Pizza Place",
+            rating: 4.5,
+            image: "https://t3.ftcdn.net/jpg/00/29/13/38/240_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg",
+        },
     ])
+
+    const handleToggle = (name:'currentPassword'|'newPassword'|'confirmPassword') => {
+        
+        setToggle(prev => ({
+            ...prev,
+            [name]: !prev[name]
+        }))
+        console.log(toggle)
+    }
+
     return (
         <div className="space-y-4">
             <div className="w-full border bg-white border-gray-300 px-4 py-8 rounded-md">
@@ -238,6 +298,114 @@ const PersonalInforamtion = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="w-full border border-gray-300 bg-white px-4 pt-8 pb-4 rounded-md">
+                    <div className="text-xl font-semibold flex gap-2 items-center">Favourite Restaurants</div>
+                    <div className="space-y-4 mt-4 max-h-115 overflow-y-scroll" style={{
+                        scrollbarWidth: "none"
+                    }}>
+                        {
+                           favouriteRestaurants.length === 0? 
+                           <div className="w-full flex justify-center items-center flex-col bg-gray-100 p-2 rounded-md h-60">
+                                <div className="text-gray-600 font-semibold">
+                                    No Favourite Restaurants
+                                </div>
+                                <div>
+                                    <Link href={'/restaurants'}><Button variant={'darkbutton'}>Browse</Button></Link>
+                                </div>
+
+                           </div>:
+                           ( favouriteRestaurants.map(item => (
+                                <div key={item.id} className="flex items-center gap-4 border border-gray-300 p-2 rounded-md cursor-pointer">
+                                    <div className="w-15 h-15 rounded-md">
+                                        <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-md border border-gray-300"/>
+                                    </div>
+                                    <div>
+                                        <div>{item.name}</div>
+                                        <div className="flex gap-1 items-center "><Star size={18} fill="#FDC700" color="#FDC700"/> {item.rating}</div>
+                                    </div>
+                                </div>
+                            )))
+                        }
+                    </div>
+            </div>
+
+            <div className="w-full border border-gray-300 bg-white px-4 py-8 rounded-md">
+                <div className="text-xl font-semibold flex gap-2 items-center">Setting</div>
+                <div className="mt-4">
+                    <div>
+                        <div>
+                            <Button variant={'outline'} className={`w-full ${isPassword? "bg-red-500 hover:bg-red-400 text-white":"bg-white hover:bg-gray-200"}`} onClick={()=>setPassword(prev => !prev)}>{isPassword? "Cancel":"Change Password"}</Button>
+                        </div>
+                        
+                                <div className={`w-full rounded-md space-y-4 overflow-hidden ${isPassword? "h-fit px-2 py-4 mt-2 border border-gray-300":"h-0 p-0"} transition-all ease-in-out duration-300`}>
+                                    <div>
+                                        <div>Current Password</div>
+                                        <div className="relative">
+                                            <Input
+                                            
+                                            type={toggle.currentPassword? "text":"password"} name='currentPassword'
+                                            placeholder="Current Password"
+                                            className="border-gray-300"/>
+                                            <button className="absolute top-1/2 -translate-y-1/2 right-2" onClick={()=>handleToggle('currentPassword')}>
+                                                {
+                                                toggle.currentPassword? <EyeOff/>:<Eye/>
+                                                }
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div>New Password</div>
+                                        <div className="relative">
+                                            <Input type={toggle.newPassword? "text":"password"} name='newPassword'
+                                            placeholder="New Password"
+                                            className="border-gray-300"/>
+                                            <button className="absolute top-1/2 -translate-y-1/2 right-2" onClick={()=>handleToggle('newPassword')}>
+                                                {
+                                                toggle.newPassword? <EyeOff/>:<Eye/>
+                                                }
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div>Confirm Password</div>
+                                        <div className="relative">
+                                            <Input type={toggle.confirmPassword? "text":"password"} name='confirmPassword'
+                                            placeholder="Confirm Password"
+                                            className="border-gray-300"/>
+                                            <button className="absolute top-1/2 -translate-y-1/2 right-2" onClick={()=>handleToggle('confirmPassword')}>
+                                                {
+                                                toggle.confirmPassword? <EyeOff/>:<Eye/>
+                                                }
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <Button variant={'darkbutton'} className="w-full">Update Password</Button>
+                                    </div>
+
+                                    <div>
+                                        <ul className="list-disc pl-5 text-sm text-gray-500">
+                                            <li>Must be atleast 8 digit long.</li>
+                                            <li>Must contain atleast one symbol</li>
+                                            <li>Must contain atleast one small and capital letter.</li>
+                                            <li>Must contain atleast one number.</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                           
+                    </div>
+                </div>
+
+                <div>
+                    <Button variant={'darkbutton'} className="w-full mt-4"><LogOut/> Logout</Button>
+                </div>
+            </div>
+
         </div>
     )
 }
