@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import {  Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/common/Navbar";
 import { Toaster } from "sonner";
+import LayoutClient from "@/components/common/LayoutClient";
 
 const inter = Inter({
   subsets: ["latin"]
@@ -18,14 +18,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <body
         className={`${inter.className} antialiased bg-[#F6F7F8] min-h-screen w-full`}
       >
         <Toaster position="bottom-right" />
-        <Navbar/>
-        {children}
+        <LayoutClient>
+          {children}
+        </LayoutClient>
       </body>
     </html>
   );
