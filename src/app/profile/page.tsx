@@ -102,7 +102,7 @@ const page = () => {
 
 const PersonalInforamtion = () => {
     const [isEdit, setEdit] = useState(false)
-    const [isPassword, setPassword] = useState(true)
+    const [isPassword, setPassword] = useState(false)
     const [profile, setProfile] = useState({
         fullName: "Binod Kaucha Magar",
         email: "kauchabinod88@gmail.com",
