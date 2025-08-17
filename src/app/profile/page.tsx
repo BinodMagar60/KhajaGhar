@@ -19,7 +19,7 @@ interface IRestuarant {
 
 const page = () => {
 
-    const size = 20
+    const size = 18
     const quickActionButtons = [
         {
             id: 1,
@@ -82,7 +82,7 @@ const page = () => {
                             {
                                 quickActionButtons.map(item => (
                                     <Link href={item.link} key={item.id}>
-                                        <button className="border border-gray-300 flex items-center text-lg w-full p-2 rounded-md cursor-pointer gap-2 pl-4 hover:bg-gray-100">{item.icon} {item.name}</button>
+                                        <button className="border border-gray-300 flex items-center  w-full p-2 rounded-md cursor-pointer gap-2 pl-4 hover:bg-gray-100">{item.icon} {item.name}</button>
                                     </Link>
                                 ))
                             }
